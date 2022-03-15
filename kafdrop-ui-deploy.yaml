@@ -1,0 +1,26 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: kafdrop-ui-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafdrop-ui
+  template:
+    metadata:
+      labels:
+        app: kafdrop-ui
+    spec:
+      containers:
+      - name: kafdrop-ui
+        image: obsidiandynamics/kafdrop
+        ports:
+        - containerPort: 2181
+        env:
+        - name: JVM_OPTS
+          value: "-Xms512M -Xms512M"
+        - name: SERVER_SERVLET_CONTEXTPATH
+          value: "/"
+        - name: KAFKA_BROKERCONNECT
+          value: "127.0.0.1:9094"

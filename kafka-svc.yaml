@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-service
+  labels:
+    name: kafka
+spec:
+  ports:
+  - name: port9092
+    protocol: TCP
+    port: 9092 # 다른 서비스와 소통하기 위한 포트
+    targetPort: 9092 #서비스가 제공되는 포트 번호
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafkaservice-external
+  labels:
+    name: kafka
+spec:
+  type: NodePort
+  ports:
+  - name: port9094
+    protocol: TCP
+    port: 9094 # 다른 서비스와 소통하기 위한 포트
+    targetPort: 9094 #서비스가 제공되는 포트 번호
+    nodePort: 30035
