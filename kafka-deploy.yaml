@@ -32,11 +32,11 @@ spec:
         # Create a topic NAME:PARTITION:REPLICAS
         - name: KAFKA_CREATE_TOPICS
           value: TOPIC_A:3:1, TOPIC_B:3:1
-        - name: KAFKA_LISTENERS
-          value: INTERNAL_PLAINTEXT://0.0.0.0:9092,EXTERNAL_PLAINTEXT://0.0.0.0:9094
+        - name: KAFKA_LISTENERS #kafka 가 내부적으로 바인딩하는 주소
+          value: INTERNAL://127.0.0.1:9092,EXTERNAL://127.0.0.1:9094
+        - name: KAFKA_ADVERTISED_LISTENERS #kafka 프로듀서, 컨슈머에게 노출할 주소, default: KAFKA_LISTENER
+          value: INTERNAL://127.0.0.1:9092,EXTERNAL://127.0.0.1:9094
         - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
-          value: "INTERNAL_PLAINTEXT:PLAINTEXT,EXTERNAL_PLAINTEXT:PLAINTEXT"
-        - name: KAFKA_ADVERTISED_LISTENERS
-          value: INTERNAL_PLAINTEXT://:9092,EXTERNAL_PLAINTEXT://127.0.0.1:9094
+          value: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
         - name: KAFKA_INTER_BROKER_LISTENER_NAME
-          value: INTERNAL_PLAINTEXT
+          value: INTERNAL

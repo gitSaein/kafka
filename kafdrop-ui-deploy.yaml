@@ -16,11 +16,13 @@ spec:
       - name: kafdrop-ui
         image: obsidiandynamics/kafdrop
         ports:
-        - containerPort: 2181
+        - containerPort: 9000
         env:
         - name: JVM_OPTS
           value: "-Xms512M -Xms512M"
         - name: SERVER_SERVLET_CONTEXTPATH
           value: "/"
         - name: KAFKA_BROKERCONNECT
-          value: "127.0.0.1:9094"
+          value: "127.0.0.1:30035"
+        - name: SERVER_PORT
+          value: "9000"
