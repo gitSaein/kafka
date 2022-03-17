@@ -18,8 +18,66 @@ spec:
         image: bitnami/zookeeper:latest
         ports:
         - containerPort: 2181
+        - containerPort: 2888
+        - containerPort: 3888
         env:
         - name: ZOO_SERVER_ID
           value: "1"
+        - name: ALLOW_ANONYMOUS_LOGIN
+          value: "yes"
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: dev-bemily-messenger-kafka-zookeer-02
+  namespace: bemily-messenger-kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-bemily-messenger-kafka-zookeer-02
+  template:
+    metadata:
+      labels:
+        app: dev-bemily-messenger-kafka-zookeer-02
+    spec:
+      containers:
+      - name: zoo2
+        image: bitnami/zookeeper:latest
+        ports:
+        - containerPort: 2181
+        - containerPort: 2888
+        - containerPort: 3888
+        env:
+        - name: ZOO_SERVER_ID
+          value: "2"
+        - name: ALLOW_ANONYMOUS_LOGIN
+          value: "yes"
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: dev-bemily-messenger-kafka-zookeer-03
+  namespace: bemily-messenger-kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-bemily-messenger-kafka-zookeer-03
+  template:
+    metadata:
+      labels:
+        app: dev-bemily-messenger-kafka-zookeer-03
+    spec:
+      containers:
+      - name: zoo3
+        image: bitnami/zookeeper:latest
+        ports:
+        - containerPort: 2181
+        - containerPort: 2888
+        - containerPort: 3888
+        env:
+        - name: ZOO_SERVER_ID
+          value: "3"
         - name: ALLOW_ANONYMOUS_LOGIN
           value: "yes"

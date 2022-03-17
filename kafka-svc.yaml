@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dev-bemily_messenger-kafka-01
+  name: dev-bemily-messenger-kafka-01
   namespace: bemily-messenger-kafka
   labels:
-    name: dev-bemily_messenger-kafka-01
+    name: dev-bemily-messenger-kafka-01
 spec:
   ports:
   - port: 9092
-    name: dev-bemily_messenger-kafka-01
+    name: dev-bemily-messenger-kafka-01
     protocol: TCP
   selector:
-    app: dev-bemily_messenger-kafka-01
+    app: dev-bemily-messenger-kafka-01
     id: "0"
   type: LoadBalancer
